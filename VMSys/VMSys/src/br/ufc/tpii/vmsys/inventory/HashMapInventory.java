@@ -15,7 +15,7 @@ public class HashMapInventory implements Inventory {
 
 	public void addItem(Item item) throws ItemAlreadyAdded {
 		if (this.inventory.containsKey(item.getName())) {
-			throw new ItemAlreadyAdded("Item already added: " + item.getName());
+			throw new ItemAlreadyAdded("Item já adicionado: " + item.getName());
 		}
 
 		this.inventory.put(item.getName(), item);
@@ -23,7 +23,7 @@ public class HashMapInventory implements Inventory {
 
 	public void removeItem(String itemName) throws ItemNotFound {
 		if (!this.inventory.containsKey(itemName)) {
-			throw new ItemNotFound("Item not found: " + itemName);
+			throw new ItemNotFound("Item não encontrado " + itemName);
 		}
 
 		this.inventory.remove(itemName);
@@ -31,7 +31,7 @@ public class HashMapInventory implements Inventory {
 
 	public Item getItem(String itemName) throws ItemNotFound {
 		if (!this.inventory.containsKey(itemName)) {
-			throw new ItemNotFound("Item not found: " + itemName);
+			throw new ItemNotFound("Item não encontrado: " + itemName);
 		}
 
 		return this.inventory.get(itemName);
