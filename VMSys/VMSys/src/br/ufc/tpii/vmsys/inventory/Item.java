@@ -28,10 +28,10 @@ public class Item {
 	}
 
 	public void decCount() {
-		this.count++;
+		this.count--;
 	}
 
 	public void incCount() {
-		this.count--;
+		this.count++;
 	}
 }
