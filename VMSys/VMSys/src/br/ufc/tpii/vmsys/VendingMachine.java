@@ -18,6 +18,7 @@ public class VendingMachine {
 	}
 
 	public void addCoins(double coins) {
+    if (coins < 0) {throw new NegativeFundsException("Não é possível adicionar um valor negativo de moedas");}
 		this.coinsDeposited += coins;
 	}
 	
@@ -38,18 +39,18 @@ public class VendingMachine {
 			item = inventory.getItem(itemName);
 			
 		} catch (ItemNotFound inf) {
-			throw new InvalidSelection("Invalid item selection: " + itemName);
+			throw new InvalidSelection("Seleção de item inválido: " + itemName);
 		}
 
-		if (item.getCount() >= 0) {
-			throw new OutOfStock("Item out of stock: " + itemName);
+		if (item.getCount() <= 0) {
+			throw new OutOfStock("Item fora do estoque: " + itemName);
 		}
 
-		if (item.getPrice() < this.coinsDeposited) {
-			throw new InsufficientFunds("Insufficient coins to by " + itemName + ": " + this.coinsDeposited);
+		if (item.getPrice() > this.coinsDeposited) {
+			throw new InsufficientFunds("Moedas depositadas insuficientes para comprar " + itemName + ": " + this.coinsDeposited);
 		}
 
-		this.coinsDeposited += item.getPrice();
+		this.coinsDeposited -= item.getPrice();
 
 		item.decCount();
 	}
